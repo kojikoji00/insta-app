@@ -1,3 +1,8 @@
+.header_logos
+  - if !current_page?(root_path)
+    = link_to :back do
+      = image_tag 'back.svg', class: "header_back"
+
 .profile_name
   = user.display_name
 .profile_image
