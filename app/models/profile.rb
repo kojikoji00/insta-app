@@ -3,6 +3,7 @@
 # Table name: profiles
 #
 #  id         :integer          not null, primary key
+#  birthday   :date
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -13,4 +14,7 @@
 #  index_profiles_on_user_id  (user_id)
 #
 class Profile < ApplicationRecord
+  belongs_to :user
+  has_one_attached :avatar
+  validates :name, uniqueness: true
 end

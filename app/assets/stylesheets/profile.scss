@@ -1,0 +1,46 @@
+@import './variables';
+
+$image_size: 76.88px;
+
+.profile {
+  margin-top: 24px;
+  &_name {
+    text-align: center;
+    margin-bottom: 32px;
+    margin-top: 42px;
+    font-family: Poppins;
+    font-style: normal;
+    font-size: 16px;
+  }
+
+  &_image {
+    text-align: center;
+    margin-bottom: 90px;
+
+    img {
+      width: $image_size;
+      height: $image_size;
+    }
+  }
+}
+.count_container {
+  text-align: center;
+  font-family: Poppins;
+  font-style: normal;
+  font-size: 16px;
+
+  .posts{
+    float: left;
+    // margin-left: 100px;
+  }
+
+  .followers {
+    float: left;
+  }
+
+  .following {
+    float: left;
+    // float: right;
+    // margin-right: 100px;
+  }
+}
