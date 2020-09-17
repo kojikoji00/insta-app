@@ -1,4 +1,16 @@
-.container.profilePage
-  .profilePage_user
-    .profilePage_user_image
-      = image_tag user.avatar_image
+.profile_name
+  = user.display_name
+.profile_image
+  = image_tag user.avatar_image
+.count_container
+  .posts
+    -# %span= user.article_count
+    %h1 44
+    %h2 Posts
+  .followers
+    %h1 110
+    %h2 Followers
+  .following
+    %h1 44
+    %h2 Following
+  -# = render 'commons/article', article: article

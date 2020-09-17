@@ -24,6 +24,10 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_one :profile, dependent: :destroy
 
+  def display_name
+    profile&.nickname || self.email.split('@').first
+  end
+
   def avatar_image
     if profile&.avatar&.attached?
       profile.avatar
@@ -35,5 +39,5 @@ class User < ApplicationRecord
   def prepare_profile
     profile || build_profile
   end
-  
+
 end
