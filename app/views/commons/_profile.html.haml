@@ -1,21 +1,45 @@
-.header_logos
-  - if !current_page?(root_path)
-    = link_to :back do
-      = image_tag 'back.svg', class: "header_back"
+-# .header_logos
+-#   - if !current_page?(root_path)
+-#     = link_to :back do
+-#       = image_tag 'back.svg', class: "header_back"
 
 .profile_name
   = user.display_name
+
 .profile_image
-  = image_tag user.avatar_image
+  =link_to edit_profile_path, class: 'profile_image' do
+    =image_tag user.avatar_image, class: 'profile_avatar'
+-# =link_to edit_profile_path, class: 'profile_image' do
+-# %input.profile_avatar{:type => "file"}/
+-# %button.avatar_button{:type => "submit"} 送信する
+-# %script{:src => "./profile.js"}
+
 .count_container
-  .posts
+  %ul
+    %li.count_posts
+      %p 44
+      %p Posts
     -# %span= user.article_count
-    %h1 44
-    %h2 Posts
-  .followers
-    %h1 110
-    %h2 Followers
-  .following
-    %h1 44
-    %h2 Following
-  -# = render 'commons/article', article: article
+    %li.count_followers
+      %p 110
+      %p Followers
+    %li.count_following
+      %p 44
+      %p Following
+
+.grid
+  .grid_item_big1
+    = image_tag 'Rectangle (1).png', class: 'grid-item'
+  .grid_item_2
+    = image_tag 'Rectangle (2).png', class: 'grid-item'
+  .grid_item_3
+    = image_tag 'Rectangle (3).png', class: 'grid-item'
+  .grid_item_4
+    = image_tag 'Rectangle (4).png', class: 'grid-item'
+  .grid_item_5
+    = image_tag 'Rectangle (5).png', class: 'grid-item'
+  .grid_item_big6
+    = image_tag 'Rectangle (6).png', class: 'grid-item'
+
+  -# = current_user.articles.each do |article|
+  -#   = render 'commons/article', article: article
