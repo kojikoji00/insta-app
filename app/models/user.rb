@@ -25,7 +25,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   def display_name
-    profile&.name || self.email.split('@').first
+    @user&.name || self.email.split('@').first
   end
 
   def avatar_image

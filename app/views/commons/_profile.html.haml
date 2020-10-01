@@ -1,14 +1,17 @@
--# .header_logos
--#   - if !current_page?(root_path)
--#     = link_to :back do
--#       = image_tag 'back.svg', class: "header_back"
+.profile
+  .profile_name
+    = user.display_name
+  -# .profile_image
+  -#   =image_tag user.avatar_image, class: 'profile_avatar'
+.profile_image_container
+  = form_with(model: @profile, url: profile_path, method: 'put') do |f|
+    -# = f.label
+    -# #img_field{:onclick => "$('#file').click()"}
+    = image_tag user.avatar_image, class: 'profile_avatar'
+    -# = f.file_field :avatar, class: "image", id: "file"
+    = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
+    = f.submit '保存', class: 'btn-secondary', id: 'file-btn'
 
-.profile_name
-  = user.display_name
-
-.profile_image
-  =link_to edit_profile_path, class: 'profile_image' do
-    =image_tag user.avatar_image, class: 'profile_avatar'
 -# =link_to edit_profile_path, class: 'profile_image' do
 -# %input.profile_avatar{:type => "file"}/
 -# %button.avatar_button{:type => "submit"} 送信する
