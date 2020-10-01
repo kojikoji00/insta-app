@@ -20,26 +20,57 @@ import axios from 'axios'
 import { csrfToken } from 'rails-ujs'
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
+export default axios
+
 document.addEventListener('DOMContentLoaded', () => {
-  $(function () {
-    $(".avatar_image").change(function () {
-      $(this).closest("form").submit();
-    });
+  $('.profile_avatar').on('click',() => {
+    $('#file').trigger('click');
+  });
+  $('#file').on('change',function(e) {
+    $('#file-btn').trigger('click');
+  })
+  $('#file').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $('.profile_avatar').attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
   });
 });
-
-$("#btn-upload").click(function () {
-  $("#file").click();
-  return false; // must!
-});
-// $("input[type='file']").on('change',function(){
-//   var file = $(this).prop('files')[0];
-//   if(!($(".filename").length)){
-//     $(".hogehoge").append('<span class="filename"></span>');
-//   }
-
-//   $("#file-label").addClass('changed');
-//   $(".filename").html(file.name);
+// $(function () {
+//   $('#img_field').change(function () {
+//     $(this).closest('form').submit();
+//   });
+// });
 // });
 
+// $("#btn-upload").click(function () {
+//   $("#file").click();
+//   return false; // must!
+// });
 
+// $(function(){
+//   $('#img_field').change(function(e){
+    //ファイルオブジェクトを取得する
+    // var file = e.target.files[0];
+    // var reader = new $FileReader();
+
+    // //画像でない場合は処理終了
+    // if(file.type.indexOf('avatar') < 0){
+    //   alert("画像ファイルを指定してください。");
+    //   return false;
+    // }
+    //アップロードした画像を設定
+  //   reader.onload = (function(file){
+  //     return function(e){
+  //       $("#img1").attr("src", e.target.result);
+  //       $("#img1").attr("title", file.name);
+  //     };
+  //   })(file);
+  //   reader.readAsDataURL(file);
+  // });
+//     $('#file').change(function(){
+//       $("#file-btn").submit();
+//     });
+//   });
+// });

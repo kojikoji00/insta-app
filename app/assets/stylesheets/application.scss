@@ -32,3 +32,18 @@ html {
   text-align: center;
   color: black;
 }
+
+.header {
+
+  &_back {
+    float:left;
+    display: inline-block;
+  }
+  &_logout {
+    float: right;
+  }
+}
+
+.header_body {
+  clear: both;
+}
