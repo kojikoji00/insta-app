@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def new
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
-      redirect_to article_path(@article), notice: '記事を投稿しました'
+      redirect_to root_path, notice: '記事を投稿しました'
     else
       flash.now[:error] = '保存に失敗しました'
       render :new
@@ -25,6 +26,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:eyecatch, :title, :content)
+    params.require(:article).permit( :title, :content, photos: [])
   end
 end

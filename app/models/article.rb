@@ -15,5 +15,6 @@
 #
 class Article < ApplicationRecord
   belongs_to :user
-  has_one_attached :eyecatch
+  # has_many_attached :eyecatches
+  has_many_attached :photos
 end
