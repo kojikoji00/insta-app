@@ -4,9 +4,9 @@
       %li= message
   = form_with(model: @article, local: true) do |f|
     %div
-      = f.label :eyecatch, 'アイキャッチ'
+      = f.label :photos, 'アイキャッチ'
     %div
-      = f.file_field :eyecatch
+      = f.file_field :photos, multiple: true
     %div
       = f.label :title, 'タイトル'
     %div
