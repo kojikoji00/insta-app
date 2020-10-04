@@ -1,14 +1,22 @@
--# = link_to article_path(article) do
 .card
-  -# - if article.eyecatches.attached?
-  .card_image
-    -# = image_tag article.eyecatches
-    - if article.photos.attached?
-      - article.photos
-      - article.photos.each do |photo|
-        -# = image_tag photo
-    -# = image_tag article.eyecatches
-  .card_title
-    = article.title
-  .card_content
-    = article.content
+  .card_article
+    .card_article_avatar_image
+      = image_tag article.user.avatar_image
+    .card_article_profile_name
+      = article.user.display_name
+    .card_article_post_date
+      3 hours ago
+    .card_article_photo
+      - if article.photos.attached?
+        - article.photos.each do |photo|
+          = image_tag photo
+    .card_article_heart
+    .card_article_comment
+    .card_article_title
+      = article.title
+    .card_article_content
+      = article.content
+    .card_article_edit
+      = link_to '編集', edit_article_path(article)
+    .card_article_delete
+      = link_to '削除', article_path(article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
