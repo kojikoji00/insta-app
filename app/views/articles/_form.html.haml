@@ -4,7 +4,7 @@
       %li= message
   = form_with(model: @article, local: true) do |f|
     %div
-      = f.label :photos, '画像'
+      = f.label :photos, 'Photo'
     %div
       = f.file_field :photos, multiple: true
     -# %div
@@ -12,8 +12,8 @@
     -# %div
     -#   = f.text_field :title, class: 'text'
     %div
-      = f.label :content, '内容'
+      = f.label :content, 'Content'
     %div
       = f.text_area :content, class: 'text'
       -# = f.rich_text_area :content
-    = f.submit '保存', class: 'btn-primary'
+    = f.submit 'Save', class: 'btn-primary'
