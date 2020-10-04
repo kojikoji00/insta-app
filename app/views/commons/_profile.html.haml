@@ -1,3 +1,8 @@
+.header_logout
+  %p.notice= notice
+  %p.alert= alert
+  - if user_signed_in?
+    = link_to 'ログアウト', destroy_user_session_path, data: {method: 'delete' }
 .profile
   .profile_name
     = user.display_name

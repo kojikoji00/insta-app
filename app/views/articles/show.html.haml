@@ -1,1 +1,12 @@
-%h1 show
+.card_article_photo
+  - if @article.photos.attached?
+    - @article.photos.each do |photo|
+      = image_tag photo
+-# .card_article_title
+-#   = @article.title
+.card_article_content
+  = @article.content
+.card_article_edit
+  = link_to '編集', edit_article_path(@article)
+.card_article_delete
+  = link_to '削除', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }

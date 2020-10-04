@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
-      redirect_to root_path, notice: '記事を投稿しました'
+      redirect_to root_path
     else
       flash.now[:error] = '保存に失敗しました'
       render :new

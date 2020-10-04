@@ -13,11 +13,6 @@
         - if !current_page?(root_path)
           = link_to :back do
             = image_tag 'backbutton.png', class: "header_back"
-      .header_logout
-        %p.notice= notice
-        %p.alert= alert
-        - if user_signed_in?
-          = link_to 'ログアウト', destroy_user_session_path, data: {method: 'delete' }
 .header_body
   = yield
 

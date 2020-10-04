@@ -1,22 +1,25 @@
 .card
   .card_article
-    .card_article_avatar_image
-      = image_tag article.user.avatar_image
-    .card_article_profile_name
-      = article.user.display_name
+    = link_to profile_path do
+      .card_article_avatar_image
+        = image_tag article.user.avatar_image
+      .card_article_profile_name
+        = article.user.display_name
     .card_article_post_date
       3 hours ago
     .card_article_photo
-      - if article.photos.attached?
-        - article.photos.each do |photo|
-          = image_tag photo
-    .card_article_heart
-    .card_article_comment
-    .card_article_title
-      = article.title
+      = link_to article_path(article) do
+        - if article.photos.attached?
+          - article.photos.each do |photo|
+            = image_tag photo
+    .card_article_reaction
+      .card_article_reaction_heart
+        = image_tag 'active-heart.png'
+      .card_article_reaction_comment
+        = image_tag 'comment.png'
+      .card_article_reaction_share
+        = image_tag 'share.png'
+    .card_article_heart_count
+      Jasmine and 12000 other liked your post
     .card_article_content
-      = article.content
-    .card_article_edit
-      = link_to '編集', edit_article_path(article)
-    .card_article_delete
-      = link_to '削除', article_path(article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
+      = "#{article.user.display_name}#{"  "}#{article.content}"
