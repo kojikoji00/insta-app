@@ -4,13 +4,22 @@
   margin: 16px 5px;
   cursor: pointer;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  float: left;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 21px;
+  font-weight: 500px;
+  font: poppins;
 
-  &_image{
-    
-    img{
-      width: 128px;
-      height: 92px;
+  &_article{
+    margin-left: 17px;
+
+    &_avatar_image {
+      float: left;
+      img{
+        width: 30px;
+        height: 30px;
+        margin-right: 8px;
+      }
     }
   }
 
