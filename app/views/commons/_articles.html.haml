@@ -1,6 +1,9 @@
 .container
-  - articles.each do |article|
-    = render 'commons/article', article: article
-  = link_to new_article_path do
-    .float_btn
-      %h2 新規投稿
+  .article_new
+    = link_to new_article_path do
+      .float_btn
+        = image_tag 'camera.png'
+  .article
+    - articles.each do |article|
+      = link_to article_path(article) do
+        = render 'commons/article', article: article

@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2020_09_13_110959) do
 
   create_table "articles", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "title", null: false
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

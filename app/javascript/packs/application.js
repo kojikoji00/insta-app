@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     reader.readAsDataURL(e.target.files[0]);
   });
 });
+
+// 記事を投稿した時間を表示
+moment(tweet.created_at).fromNow()
+
 // $(function () {
 //   $('#img_field').change(function () {
 //     $(this).closest('form').submit();
