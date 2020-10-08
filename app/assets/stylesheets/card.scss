@@ -30,9 +30,28 @@
     &_photo {
       clear: both;
       margin-bottom: 8px;
-      img {
-        width: 198px;
-        height: 225px;
+      &_top {
+        float: left;
+        margin-right: 7px;
+        img {
+          width: 198px;
+          height: 225px;
+        }
+      }
+      &_under1{
+        img {
+          clear: both;
+          width: 138px;
+          height: 109px;
+          margin-bottom: 4px;
+        }
+      }
+      &_under2{
+        img {
+          clear: both;
+          width: 138px;
+          height: 109px;
+        }
       }
     }
     &_reaction {

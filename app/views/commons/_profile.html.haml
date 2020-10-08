@@ -6,33 +6,30 @@
 .profile
   .profile_name
     = user.display_name
-  -# .profile_image
-  -#   =image_tag user.avatar_image, class: 'profile_avatar'
-.profile_image_container
-  = form_with(model: @profile, url: profile_path, method: 'put') do |f|
-    -# = f.label
-    -# #img_field{:onclick => "$('#file').click()"}
-    = image_tag user.avatar_image, class: 'profile_avatar'
-    -# = f.file_field :avatar, class: "image", id: "file"
-    = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
-    = f.submit '保存', class: 'btn-secondary', id: 'file-btn'
 
--# =link_to edit_profile_path, class: 'profile_image' do
--# %input.profile_avatar{:type => "file"}/
--# %button.avatar_button{:type => "submit"} 送信する
--# %script{:src => "./profile.js"}
+.profile_image_container
+  - if user == current_user
+    = form_with(model: @profile, url: profile_path, method: 'put') do |f|
+      = image_tag user.avatar_image, class: 'profile_avatar'
+      = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
+      = f.submit '保存', class: 'btn-secondary', id: 'file-btn'
+.follow
+  - if current_user&.has_followed?(user)
+    = link_to 'Unfollow', account_unfollows_path(user), data: {method: 'post'}
+  - else
+    = link_to 'Follow', account_follows_path(user), data: {method: 'post'}
 
 .count_container
   %ul
     %li.count_posts
-      %p 44
+      = user.articles.to_a.count
       %p Posts
     -# %span= user.article_count
     %li.count_followers
-      %p 110
+      = user.followers.to_a.count
       %p Followers
     %li.count_following
-      %p 44
+      = user.followings.to_a.count
       %p Following
 
 .grid
@@ -49,5 +46,7 @@
   .grid_item_big6
     = image_tag 'Rectangle (6).png', class: 'grid-item'
 
+- user.articles.each do |article|
+  = render 'commons/article', article: article
   -# = current_user.articles.each do |article|
   -#   = render 'commons/article', article: article

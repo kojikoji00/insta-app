@@ -23,6 +23,12 @@ axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 export default axios
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  axios.get(`/articles/${articleId}/comments`)
+    .then((response) => {
+      const comments = response.data
+    })
+
   $('.profile_avatar').on('click',() => {
     $('#file').trigger('click');
   });
@@ -39,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 記事を投稿した時間を表示
-moment(tweet.created_at).fromNow()
+moment(article.created_at).fromNow()
 
 // $(function () {
 //   $('#img_field').change(function () {
