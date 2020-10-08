@@ -29,18 +29,6 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
 
-  def display_name
-    @user&.name || self.email.split('@').first
-  end
-
-  def avatar_image
-    if profile&.avatar&.attached?
-      profile.avatar
-    else
-      'default-avatar.png'
-    end
-  end
-
   def follow!(user)
     user_id = get_user_id(user)
     following_relationships.create!(following_id: user_id)
@@ -49,6 +37,11 @@ class User < ApplicationRecord
   def unfollow!(user)
     user_id = get_user_id(user)
     relation = following_relationships.find_by!(following_id: user_id)
+    relation.destroy!
+  end
+
+  def unfollow!(user)
+    relation = following_relationships.find_by!(following_id: user.id)
     relation.destroy!
   end
 
