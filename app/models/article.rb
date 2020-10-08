@@ -14,6 +14,7 @@
 #
 class Article < ApplicationRecord
   belongs_to :user
+  has_many :comment
   # has_many_attached :eyecatches
   has_many_attached :photos
 end

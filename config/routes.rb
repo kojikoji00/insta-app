@@ -5,13 +5,20 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'articles#index'
+  root to: 'timelines#show'
+  # root to: 'articles#index'
   resource :profile, only: [:show, :edit, :update]
   resource :timeline, only: [:show]
-  resources :articles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :articles, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :comments, only: [:index, :new, :create]
+  end
 
+  resources :accounts, only: [:show] do
+    resources :follows, only: [:create]
+    resources :unfollows, only: [:create]
+  end
   # scope module: :apps do
-    # resource :timeline, only: [:show]
+  resource :timeline, only: [:show]
     # resources :favorites, only: [:index]#  いいね
   # end
 end
