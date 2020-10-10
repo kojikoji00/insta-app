@@ -17,4 +17,5 @@ class Article < ApplicationRecord
   has_many :comment
   # has_many_attached :eyecatches
   has_many_attached :photos
+  has_many :likes, dependent: :destroy
 end
