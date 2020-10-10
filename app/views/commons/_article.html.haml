@@ -1,12 +1,13 @@
 .card
   .card_article
-    = link_to account_path(article.user) do
-      .card_article_avatar_image
-        = image_tag article.user.avatar_image
-      .card_article_profile_name
-        = article.user.display_name
-    .card_article_post_date
-      %span{"data-livestamp" => "#{article.created_at}"}
+    .card_article_account
+      = link_to account_path(article.user) do
+        .card_article_avatar_image
+          = image_tag article.user.avatar_image
+        .card_article_profile_name
+          = article.user.display_name
+      .card_article_post_date
+        %span{"data-livestamp" => "#{article.created_at}"}
 
     .card_article_photo
       = link_to article_path(article) do
@@ -20,8 +21,15 @@
           - article.photos.each do |photo|
             = image_tag photo
     .card_article_reaction
-      .card_article_reaction_heart
-        = image_tag 'active-heart.png'
+      - if user_signed_in?
+        - if current_user.has_liked?(article)
+          .card_article_reaction_heart
+            = link_to article_like_path(article), data: {method: 'delete'} do
+              = image_tag 'active-heart.png'
+        - else
+          .card_article_reaction_heart2
+            = link_to article_like_path(article), data: {method: 'post'} do
+              = image_tag 'heart.svg'
       .card_article_reaction_comment
         -# = link_to new_article_comment_path do
         = image_tag 'comment.png'
