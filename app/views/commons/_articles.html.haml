@@ -3,7 +3,10 @@
     = link_to new_article_path do
       .float_btn
         = image_tag 'camera.png'
-  .article
+  .article-all
     - articles.each do |article|
-      = link_to article_path(article) do
-      = render 'commons/article', article: article
+      .article-show#article-show{ data: {article_id: article.id}}
+        = link_to article_path(article) do
+          = render 'commons/article', article: article
+
+= javascript_pack_tag 'article'

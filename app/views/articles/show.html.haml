@@ -10,3 +10,5 @@
   = link_to '編集', edit_article_path(@article)
 .card_article_delete
   = link_to '削除', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
+
+  = javascript_pack_tag 'article'

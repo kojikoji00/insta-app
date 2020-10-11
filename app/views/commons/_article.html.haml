@@ -13,23 +13,23 @@
       = link_to article_path(article) do
         - if article.photos.attached?
           .card_article_photo_top
-            -# = image_tag article.photos[0]
-          -# .card_article_photo_under1
-          -#   = image_tag article.photos[1]
-          -# .card_article_photo_under2
-          -#   = image_tag article.photos[2]
-          - article.photos.each do |photo|
-            = image_tag photo
+            - article.photos.each do |photo|
+              = image_tag photo
+        -# = image_tag article.photos[0]
+        -# .card_article_photo_under1
+        -#   = image_tag article.photos[1]
+        -# .card_article_photo_under2
+        -#   = image_tag article.photos[2]
     .card_article_reaction
       - if user_signed_in?
-        - if current_user.has_liked?(article)
-          .card_article_reaction_heart
-            = link_to article_like_path(article), data: {method: 'delete'} do
-              = image_tag 'active-heart.png'
-        - else
-          .card_article_reaction_heart2
-            = link_to article_like_path(article), data: {method: 'post'} do
-              = image_tag 'heart.svg'
+        -# - if current_user.has_liked?(article)
+        .card_article_reaction.hidden{ id: article.id, class: 'active-heart'}
+          -# = link_to article_like_path(article), data: {method: 'delete'} do
+          = image_tag 'heart-active.svg'
+        -# - else
+        .card_article_reaction.hidden{ id: article.id, class: 'inactive-heart'}
+          -# = link_to article_like_path(article), data: {method: 'post'} do
+          = image_tag 'heart.svg'
       .card_article_reaction_comment
         -# = link_to new_article_comment_path do
         = image_tag 'comment.png'
@@ -44,5 +44,4 @@
     .comments
       %h2 コメント一覧
       .comments-container
-      
 
