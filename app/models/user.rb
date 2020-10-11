@@ -31,6 +31,14 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
 
+  # def has_written?(article)
+  #   articles.exists?(id: article.id)
+  # end
+
+  def has_liked?(article)
+    likes.exists?(article_id: article.id)
+  end
+
   def follow!(user)
     user_id = get_user_id(user)
     following_relationships.create!(following_id: user_id)
