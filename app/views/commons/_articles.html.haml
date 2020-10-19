@@ -5,7 +5,8 @@
         = image_tag 'camera.png'
     - articles.each do |article|
       -# .article-show{id: "article-show#{article.id}"}
-      .article-show{data: {article_id: article.id}}
+      -# .article-show{data: {article_id: article.id}}
+      .article-show{id: "#{article.id}"}
         = link_to article_path(article) do
           = render 'commons/article', article: article
 
