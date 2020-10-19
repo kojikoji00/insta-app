@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
   $('.active-heart').on('click', function(){
-    var articleId = dataset.attr('id')
+    var articleId = $(this).attr('id')
     axios.delete(`/articles/${articleId}/like`)
     .then((response) => {
       if (response.data.status === 'ok') {
