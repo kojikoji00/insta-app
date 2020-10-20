@@ -3,9 +3,9 @@ import axios from 'modules/axios'
 
 const handleHeartDisplay = (hasLiked) => {
   if (hasLiked) {
-    $('.active-heart,#id').removeClass('hidden')
+    $('.active-heart').removeClass('hidden')
   } else {
-    $('.inactive-heart,#id').removeClass('hidden')
+    $('.inactive-heart').removeClass('hidden')
   }
 }
 
@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const dataset = $('.article-show[id]')
   // const articleId = dataset.attr('id')
   
-  $('.inactive-heart').on('click', () => {
+  debugger
+  // $('.inactive-heart[id]').on('click', () => {
+    $('.inactive-heart,#id').on('click', function(){
+      const articleId = $(this).attr('id')
     // const articleId = dataset.attr('id')
-    const articleId = $(this).attr('id')
-    debugger
 
     axios.post(`/articles/${articleId}/like`)
     .then((response) => {
@@ -30,13 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(e)
     })
   })
-  $('.active-heart').on('click', function(){
-    var articleId = $(this).attr('id')
+  $('.active-heart,#id').on('click', function(){
+    const articleId = $(this).attr('id')
+    
     axios.delete(`/articles/${articleId}/like`)
     .then((response) => {
       if (response.data.status === 'ok') {
-        $('.active-heart[id]').addClass('hidden')
-        $('.inactive-heart[id]').removeClass('hidden')
+        $('.active-heart,#id').addClass('hidden')
+        $('.inactive-heart,#id').removeClass('hidden')
       }
     })
     .catch((e) => {
