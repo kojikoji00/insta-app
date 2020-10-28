@@ -1,4 +1,5 @@
-.card
+.card#article-show{data:{article_id: article.id}}
+  -# 修正？
   .card_article
     .card_article_account
       = link_to account_path(article.user) do
@@ -10,11 +11,10 @@
         %span{"data-livestamp" => "#{article.created_at}"}
 
     .card_article_photo
-      = link_to article_path(article) do
-        - if article.photos.attached?
-          .card_article_photo_top
-            - article.photos.each do |photo|
-              = image_tag photo
+      - if article.photos.attached?
+        .card_article_photo_top
+          - article.photos.each do |photo|
+            = image_tag photo
         -# = image_tag article.photos[0]
         -# .card_article_photo_under1
         -#   = image_tag article.photos[1]
@@ -22,26 +22,25 @@
         -#   = image_tag article.photos[2]
     .card_article_reaction
       - if user_signed_in?
-        -# - if current_user.has_liked?(article)
-        .card_article_reaction.hidden{ id: article.id, class: 'active-heart' }
-          -# = link_to article_like_path(article), data: {method: 'delete'} do
-          = image_tag 'heart-active.svg'
-        -# - else
-        .card_article_reaction.hidden{ id: article.id, class: 'inactive-heart'}
+        - if current_user.has_liked?(article)
+          .card_article_reaction_heart.hidden{ id: article.id, class: 'active-heart' }
+            = image_tag 'heart-active.svg'
+          -# - else
+          -# .card_article_reaction{ id: article.id, class: 'inactive-heart'}
+          .card_article_reaction_heart{ id: article.id, class: 'inactive-heart' }
+            = image_tag 'heart.svg'
+        -# .card_article_reaction.hidden{ id: article.id, class: 'inactive-heart'}
+        -# .card_article_reaction.hidden{ id: article.id, class: 'inactive-heart'}
           -# = link_to article_like_path(article), data: {method: 'post'} do
-          = image_tag 'heart.svg'
-      .card_article_reaction_comment
-        -# = link_to new_article_comment_path do
-        = image_tag 'comment.png'
+        .card_article_reaction_comment
+          = link_to article_path(article) do
+            = image_tag 'comment.png'
       .card_article_reaction_share
         %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw"}
         %script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
 
     .card_article_heart_count
-      Jasmine and 12000 other liked your post
+      = "#{article.liked_users.name} and #{article.liked_users.to_a.count - 1} other liked your post"
     .card_article_content
       = "#{article.user.display_name}#{"  "}#{article.content}"
-    .comments
-      %h2 コメント一覧
-      .comments-container
 
