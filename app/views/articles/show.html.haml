@@ -1,14 +1,24 @@
-.card_article_photo
-  - if @article.photos.attached?
-    - @article.photos.each do |photo|
-      = image_tag photo
--# .card_article_title
--#   = @article.title
-.card_article_content
-  = @article.content
-.card_article_edit
-  = link_to '編集', edit_article_path(@article)
-.card_article_delete
-  = link_to '削除', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
-
+.article#article-show{data:{article_id: @article.id}}
+  .card_article_photo
+    - if @article.photos.attached?
+      - @article.photos.each do |photo|
+        = image_tag photo
+  -# .card_article_title
+  -#   = @article.title
+  .card_article_content
+    = @article.content
+  .card_article_edit
+    = link_to '編集', edit_article_path(@article)
+  .card_article_delete
+    = link_to '削除', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
+  .comments
+    %h2 コメント一覧
+    .comments-container
+    .btn-secondary.show-comment-form
+      = image_tag 'comment.png'
+    .comment-text-area
+      = text_area_tag :comment_content, '', class: 'sm'
+    .btn-secondary.add-comment-button
+      コメントを追加
+      
   = javascript_pack_tag 'article'

@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
 
   def new
     article = Article.find(params[:article_id])
-    @comment = article.comments.build
+    @comment = article.comment.build
   end
-  
+
   def index
     article = Article.find(params[:article_id])
     comments = article.comment
@@ -15,9 +15,9 @@ class CommentsController < ApplicationController
 
   def create
     article = Article.find(params[:article_id])
-    @comment = article.comments.build(comment_params)
+    @comment = article.comment.build(comment_params)
     if @comment.save!
-      redirect_to article_path(article), notice: 'コメント追加'  
+      redirect_to article_path(article), notice: 'コメント追加'
     else
       flash.now[:error] = '更新できませんでした'
       render :new
