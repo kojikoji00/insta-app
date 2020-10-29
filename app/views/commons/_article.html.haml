@@ -37,8 +37,7 @@
             = image_tag 'comment.png'
       .card_article_reaction_share
         %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw"}
-        %script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
-
+ 
     .card_article_heart_count
       = "#{article.liked_users.name} and #{article.liked_users.to_a.count - 1} other liked your post"
     .card_article_content

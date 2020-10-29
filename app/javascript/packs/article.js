@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import axios from 'modules/axios'
 
+
 const handleHeartDisplay = (hasLiked) => {
   if (hasLiked) {
     $(`#${articleId}.active-heart`).removeClass('hidden')
@@ -11,10 +12,11 @@ const handleHeartDisplay = (hasLiked) => {
 
 const appendNewComment = (comment) => {
   $('.comments-container').append(
-    `<div class="article_comment"><p>${escape(comment.content)}</p></div>`
+    `<div class="article_comment"><p>${comment.content}</p></div>`
   )
 }
 
+// document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   // const dataset = $('.article-show[id]')
   const dataset = $('#article-show').data()
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       axios.post(`/articles/${articleId}/comments`, {
         comment: {content: content}
+
         // 第二引数
       })
         .then((res) => {
