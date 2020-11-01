@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   axios.get(`/articles/${articleId}/comments`)
   .then((response) => {
     const comments = response.data
-    comments.forEach((comment) => {
-      appendNewComment(comment)
+    comments.forEach((commentNew) => {
+      appendNewComment(commentNew)
     })
   })
 
@@ -37,14 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       axios.post(`/articles/${articleId}/comments`, {
         comment: {content: content}
-
-        // 第二引数
       })
-        .then((res) => {
-          const comment = res.data
-          appendNewComment(comment)
-          $('#comment_content').val('')
-          debugger
+      .then((res) => {
+        const commentNew = res.data
+        appendNewComment(commentNew)
+        debugger
+        $('#comment_content').val('')
         })
     }
   })
