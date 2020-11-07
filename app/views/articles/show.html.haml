@@ -14,11 +14,11 @@
   .comments
     %h2 コメント一覧
     .comments-container
-    .btn-secondary.show-comment-form
-      = image_tag 'comment.png'
-    .comment-text-area
-      = text_area_tag :comment_content, '', class: 'sm'
+.container
+  .btn-secondary.show-comment-form
+    = image_tag 'comment.png'
+  .comment-text-area
+    = text_area_tag :comment_content, '', class: 'sm'
     .btn-secondary.add-comment-button
       コメントを追加
-      
   = javascript_pack_tag 'article'

@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
   axios.get(`/articles/${articleId}/comments`)
   .then((response) => {
     const comments = response.data
-    comments.forEach((commentNew) => {
-      appendNewComment(commentNew)
+    comments.forEach((comment) => {
+      appendNewComment(comment)
     })
   })
-
+  
   $('.add-comment-button').on('click', () => {
     const content = $('#comment_content').val()
     if (!content) {
@@ -38,11 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
       axios.post(`/articles/${articleId}/comments`, {
         comment: {content: content}
       })
-      .then((res) => {
-        const commentNew = res.data
-        appendNewComment(commentNew)
-        debugger
-        $('#comment_content').val('')
+        .then((res) => {
+          const comment = res.data
+          appendNewComment(comment)
+          $('#comment_content').val('')
         })
     }
   })
