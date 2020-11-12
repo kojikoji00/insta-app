@@ -4,15 +4,18 @@ import axios from 'modules/axios'
 
 const handleHeartDisplay = (hasLiked) => {
   if (hasLiked) {
-    $(`#${articleId}.active-heart`).removeClass('hidden')
+    $('.active-heart').removeClass('hidden')
   } else {
-    $(`#${articleId}.inactive-heart`).removeClass('hidden')
+    $('.inactive-heart').removeClass('hidden')
   }
 }
 
 const appendNewComment = (comment) => {
   $('.comments-container').append(
-    `<div class="article_comment"><p>${comment.content}</p></div>`
+    // `<div class="article_comment_image"><img src="${comment.user.comment_avatar_image}"></div>
+    `<div class="article_comment_image"><img src="${comment.user.avatar_image}"></div>
+    <div class="article_comment_name"><p>${comment.user.display_name}</p></div>
+    <div class="article_comment"><p>${comment.content}</p></div>`
   )
 }
 

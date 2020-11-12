@@ -1,3 +1,18 @@
-class ArticleSerializer < ActiveModel::Serializer
-  attributes :id
-end
+# == Schema Information
+#
+# Table name: articles
+#
+#  id         :integer          not null, primary key
+#  content    :text             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer          not null
+#
+# Indexes
+#
+#  index_articles_on_user_id  (user_id)
+#
+# class ArticleSerializer < ActiveModel::Serializer
+#   attributes :id
+#   belongs_to :user
+# end
