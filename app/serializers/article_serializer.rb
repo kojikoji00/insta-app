@@ -12,11 +12,7 @@
 #
 #  index_articles_on_user_id  (user_id)
 #
-class Article < ApplicationRecord
-  belongs_to :user
-  has_many :comments, dependent: :destroy
-  # has_many_attached :eyecatches
-  has_many_attached :photos
-  has_many :likes, dependent: :destroy
-  has_many :liked_users, through: :likes, source: :user
-end
+# class ArticleSerializer < ActiveModel::Serializer
+#   attributes :id
+#   belongs_to :user
+# end

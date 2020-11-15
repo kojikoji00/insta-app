@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resource :timeline, only: [:show]
   resources :articles, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resource :like, only: [:show, :create, :destroy]
-    resources :comments, only: [:index, :show, :new, :create]
+    resources :comments, only: [:index, :create]
   end
   resources :favorites, only: [:index]
 

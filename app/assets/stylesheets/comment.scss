@@ -1,0 +1,19 @@
+.comments-container {
+  .article_comment{
+    &_image {
+      img{
+        float: left;
+        margin-right: 20px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+    &_name {
+      float: left;
+    }
+    &_content {
+      clear: both;
+      margin-left: 50px;
+    }
+  }
+}

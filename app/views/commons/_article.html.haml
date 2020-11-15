@@ -1,5 +1,4 @@
 .card#article-show{data:{article_id: article.id}}
-  -# 修正？
   .card_article
     .card_article_account
       = link_to account_path(article.user) do
@@ -25,20 +24,15 @@
         - if current_user.has_liked?(article)
           .card_article_reaction_heart.hidden{ id: article.id, class: 'active-heart' }
             = image_tag 'heart-active.svg'
-          -# - else
-          -# .card_article_reaction{ id: article.id, class: 'inactive-heart'}
-          .card_article_reaction_heart{ id: article.id, class: 'inactive-heart' }
+          .card_article_reaction_heart.hidden{ id: article.id, class: 'inactive-heart' }
             = image_tag 'heart.svg'
-        -# .card_article_reaction.hidden{ id: article.id, class: 'inactive-heart'}
-        -# .card_article_reaction.hidden{ id: article.id, class: 'inactive-heart'}
-          -# = link_to article_like_path(article), data: {method: 'post'} do
+
         .card_article_reaction_comment
           = link_to article_path(article) do
             = image_tag 'comment.png'
       .card_article_reaction_share
         %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw"}
-        %script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
-
+ 
     .card_article_heart_count
       = "#{article.liked_users.name} and #{article.liked_users.to_a.count - 1} other liked your post"
     .card_article_content

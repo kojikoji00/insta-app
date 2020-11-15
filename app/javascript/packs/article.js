@@ -1,20 +1,25 @@
 import $ from 'jquery'
 import axios from 'modules/axios'
 
+
 const handleHeartDisplay = (hasLiked) => {
   if (hasLiked) {
-    $(`#${articleId}.active-heart`).removeClass('hidden')
+    $('.active-heart').removeClass('hidden')
   } else {
-    $(`#${articleId}.inactive-heart`).removeClass('hidden')
+    $('.inactive-heart').removeClass('hidden')
   }
 }
 
 const appendNewComment = (comment) => {
   $('.comments-container').append(
-    `<div class="article_comment"><p>${escape(comment.content)}</p></div>`
+    // `<div class="article_comment_image"><img src="${comment.user.comment_avatar_image}"></div>
+    `<div class="article_comment_image"><img src="/assets/${comment.user.avatar_image}"></div>
+    <div class="article_comment_name"><p>${comment.user.display_name}</p></div>
+    <div class="article_comment_content"><p>${comment.content}</p></div>`
   )
 }
 
+// document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   // const dataset = $('.article-show[id]')
   const dataset = $('#article-show').data()
@@ -27,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       appendNewComment(comment)
     })
   })
-
+  
   $('.add-comment-button').on('click', () => {
     const content = $('#comment_content').val()
     if (!content) {
@@ -35,13 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       axios.post(`/articles/${articleId}/comments`, {
         comment: {content: content}
-        // 第二引数
       })
         .then((res) => {
           const comment = res.data
           appendNewComment(comment)
           $('#comment_content').val('')
-          debugger
         })
     }
   })

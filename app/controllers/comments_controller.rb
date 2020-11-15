@@ -1,34 +1,28 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  def new
-    article = Article.find(params[:article_id])
-    @comment = article.comment.build
-  end
+  # def new
+  #   article = Article.find(params[:article_id])
+  #   @comment = article.comments.build
+  # end
 
   def index
     article = Article.find(params[:article_id])
-    comments = article.comment
+    comments = article.comments
 
-    render json: comments
+    render json: comments, include: { user: [ :profile]}
   end
 
   def create
     article = Article.find(params[:article_id])
-    @comment = article.comment.build(comment_params)
-    if @comment.save!
-      redirect_to article_path(article), notice: 'コメント追加'
-    else
-      flash.now[:error] = '更新できませんでした'
-      render :new
-    end
-    # redirect_to article_comment_path(article_id: @comment.article_id, id: @comment.id)
-      # render json @comment
+    @comment = article.comments.build(comment_params)
+    @comment.save!
+    render json: @comment, include: {user: [:profile]}
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content).merge(user_id: current_user.id)
   end
 end

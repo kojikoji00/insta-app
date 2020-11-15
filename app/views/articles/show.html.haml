@@ -1,4 +1,4 @@
-.article#article-show{data:{article_id: @article.id}}
+.article#article-show{data: {article_id: @article.id}}
   .card_article_photo
     - if @article.photos.attached?
       - @article.photos.each do |photo|
@@ -12,13 +12,13 @@
   .card_article_delete
     = link_to '削除', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
   .comments
-    %h2 コメント一覧
+    %h2 Comment
     .comments-container
-    .btn-secondary.show-comment-form
-      = image_tag 'comment.png'
-    .comment-text-area
-      = text_area_tag :comment_content, '', class: 'sm'
+.container
+  -# .btn-secondary.show-comment-form
+  -#   = image_tag 'comment.png'
+  .comment-text-area
+    = text_area_tag :comment_content, '', class: 'sm'
     .btn-secondary.add-comment-button
-      コメントを追加
-      
+      add comment
   = javascript_pack_tag 'article'
