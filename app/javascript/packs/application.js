@@ -15,30 +15,57 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-
 document.addEventListener('DOMContentLoaded', () => {
-// document.addEventListener('turbolinks: load', () => {
-
+  const reader = new FileReader();
+  const imageUpload = document.getElementById("file")
+      $('#profile_avatar_prev').on('click', () => {
+        $('#file').click()
+      })
+      $('#file').on('change', () => {
+        $('#file-btn').trigger('click')
+      })
+      
+      imageUpload.onchange = function() {
+        var file = $('input[type="file"]').prop('files')[0];
+        
+    if(!file) {
+      window.alert('画像を選択してください')
+    } else {
+      reader.readAsDataURL(file);
+      reader.onload = function(e){
+        $('#profile_avatar_prev').attr('src', e.target.result);
+        axios.put('/profile', {profile: {avatar: e.target.result}})
+        .then((res) => {
+            window.alert('成功!')
+        })
+        .catch((e) => {
+          window.alert('失敗!')
+        })
+      }
+    }
+  }
+})
   // axios.get(`/articles/${articleId}/comments`)
   //   .then((response) => {
-  //     const comments = response.data
-  //   })
+    //     const comments = response.data
+    //   })
+    
+    // $('.profile_avatar').on('click', function() {
+  //   $('#file').trigger('click');
+  // });
+  // $('#file').on('change', function(e){
+    //   $('#file-btn').trigger('click')
+  //   // debugger
+  // })
 
-  $('.profile_avatar').on('click',() => {
-    $('#file').trigger('click');
-  });
-  $('#file').on('change',function(e) {
-    $('#file-btn').trigger('click');
-  })
-  $('#file').on('change', function (e) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      $('.profile_avatar').attr('src', e.target.result);
-    }
-    reader.readAsDataURL(e.target.files[0]);
-  });
-});
+  // var files = e.target.files[0];
+  // var reader = new FileReader();
+  // reader.onload = function (e) {
+  //   debugger
+  // }
+  //   reader.readAsDataURL(e.target.files[0]);
+
+
 
 // 記事を投稿した時間を表示
 moment(article.created_at).fromNow()
-

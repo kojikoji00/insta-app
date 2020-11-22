@@ -3,16 +3,19 @@
   %p.alert= alert
   - if user_signed_in?
     = link_to 'ログアウト', destroy_user_session_path, data: {method: 'delete' }
+
 .profile
   .profile_name
     = user.display_name
 
 .profile_image_container
   - if user == current_user
-    = form_with(model: @profile, url: profile_path, method: 'put') do |f|
-      = image_tag user.avatar_image, class: 'profile_avatar'
+    = form_with(model: @profile, url: profile_path, method: 'put', local: true) do |f|
+      = image_tag user.avatar_image, class: 'profile_avatar', id: 'profile_avatar_prev'
       = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
-      = f.submit '保存', class: 'btn-secondary', id: 'file-btn'
+      -# = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
+      = f.submit '保存', class: 'btn-secondary', style: "display:none;", id: 'file-btn'
+
 .follow
   - if current_user&.has_followed?(user)
     = link_to 'Unfollow', account_unfollows_path(user), data: {method: 'post'}
@@ -32,19 +35,19 @@
       = user.followings.to_a.count
       %p Following
 
-.grid
-  .grid_item_big1
-    = image_tag 'Rectangle (1).png', class: 'grid-item'
-  .grid_item_2
-    = image_tag 'Rectangle (2).png', class: 'grid-item'
-  .grid_item_3
-    = image_tag 'Rectangle (3).png', class: 'grid-item'
-  .grid_item_4
-    = image_tag 'Rectangle (4).png', class: 'grid-item'
-  .grid_item_5
-    = image_tag 'Rectangle (5).png', class: 'grid-item'
-  .grid_item_big6
-    = image_tag 'Rectangle (6).png', class: 'grid-item'
+-# .grid
+-#   .grid_item_big1
+-#     = image_tag 'Rectangle (1).png', class: 'grid-item'
+-#   .grid_item_2
+-#     = image_tag 'Rectangle (2).png', class: 'grid-item'
+-#   .grid_item_3
+-#     = image_tag 'Rectangle (3).png', class: 'grid-item'
+-#   .grid_item_4
+-#     = image_tag 'Rectangle (4).png', class: 'grid-item'
+-#   .grid_item_5
+-#     = image_tag 'Rectangle (5).png', class: 'grid-item'
+-#   .grid_item_big6
+-#     = image_tag 'Rectangle (6).png', class: 'grid-item'
 
 - user.articles.each do |article|
   = render 'commons/article', article: article

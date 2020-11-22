@@ -12,10 +12,10 @@ class ProfilesController < ApplicationController
     @profile = current_user.prepare_profile
     @profile.assign_attributes(profile_params)
     if @profile.save!
-      render json: { status: 'SUCCESS', data: @profile }
+      # render json: @profile
+      render :show
     else
-      flash.now[:error] = '更新できませんでした'
-      render json: @profile
+      # render json: @profile.errors
     end
   end
 
@@ -36,6 +36,6 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:avatar)
-    # params.fetch(:profile, {}).permit(:avatar)
+    # params.require(:profile).permit(:avatar)
   end
 end
