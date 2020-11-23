@@ -10,7 +10,7 @@
 
 .profile_image_container
   - if user == current_user
-    = form_with(model: @profile, url: profile_path, method: 'put', local: true) do |f|
+    = form_with(model: @profile, url: profile_path, method: 'put', remote: true) do |f|
       = image_tag user.avatar_image, class: 'profile_avatar', id: 'profile_avatar_prev'
       = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
       -# = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
