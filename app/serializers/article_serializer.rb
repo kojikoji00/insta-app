@@ -12,7 +12,3 @@
 #
 #  index_articles_on_user_id  (user_id)
 #
-# class ArticleSerializer < ActiveModel::Serializer
-#   attributes :id
-#   belongs_to :user
-# end

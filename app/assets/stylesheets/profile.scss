@@ -27,7 +27,7 @@ $image_size: 76.88px;
     // border: 1px solid #E91E63;
   }
   #file-btn {
-    display: none;
+    // display: none;
     
   }
 }
@@ -111,4 +111,7 @@ $image_size: 76.88px;
       grid-row: 3 / 5;
     }
   }
+}
+.follow {
+  clear: both;
 }
