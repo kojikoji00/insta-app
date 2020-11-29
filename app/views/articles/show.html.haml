@@ -3,14 +3,15 @@
     - if @article.photos.attached?
       - @article.photos.each do |photo|
         = image_tag photo
-  -# .card_article_title
-  -#   = @article.title
-  -# .card_article_content
-  -#   = @article.content
+        -# .card_article_title
+        -#   = @article.title
+        -# .card_article_content
+        -#   = @article.content
   .card_article_edit
     = link_to 'edit', edit_article_path(@article)
   .card_article_delete
     = link_to 'delete', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
+
   .comments
     %h2 Comment
     .comments-container

@@ -13,14 +13,18 @@
     = form_with(model: @profile, url: profile_path, method: 'put', remote: true) do |f|
       = image_tag user.avatar_image, class: 'profile_avatar', id: 'profile_avatar_prev'
       = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
-      -# = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
       = f.submit '保存', class: 'btn-secondary', style: "display:none;", id: 'file-btn'
 
-.follow
+.follow#account-show{data: {account_id: @user.id}}
   - if current_user&.has_followed?(user)
-    = link_to 'Unfollow', account_unfollows_path(user), data: {method: 'post'}
+    .follow_btn.follow.hidden
+      -# = link_to 'Unfollow', account_unfollows_path(user), data: {method: 'post'}
+      Follow
   - else
-    = link_to 'Follow', account_follows_path(user), data: {method: 'post'}
+    .follow_btn.unfollow.hidden
+      -# = link_to 'Follow', account_follows_path(user), data: {method: 'post'}
+      Unfollow
+
 
 .count_container
   %ul
@@ -35,6 +39,7 @@
       = user.followings.to_a.count
       %p Following
 
+= javascript_pack_tag 'follow'
 -# .grid
 -#   .grid_item_big1
 -#     = image_tag 'Rectangle (1).png', class: 'grid-item'
