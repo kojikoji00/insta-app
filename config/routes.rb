@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index]
 
   resources :accounts, only: [:show] do
-    resources :follows, only: [:create]
+    resources :follows, only: [:show, :create]
     resources :unfollows, only: [:create]
   end
   # scope module: :apps do

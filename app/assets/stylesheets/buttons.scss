@@ -24,3 +24,24 @@
   
 }
 
+
+.follow_btn {
+  text-align: center;
+  margin: 0 auto;
+  width: 110px;
+  height: 30px;
+  background: #668ad8;/*ボタン色*/
+  border-radius: 3px;
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  font-weight: bold;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.follow_btn:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}

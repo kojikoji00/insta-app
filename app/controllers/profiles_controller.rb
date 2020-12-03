@@ -19,17 +19,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # def article_count
-  #   articles.count
-  # end
-
-  # def follower_count
-  #   followers.count
-  # end
-
-  # def following_count
-  #   followings.count
-  # end
 
 
   private

@@ -64,10 +64,10 @@ class User < ApplicationRecord
     relation.destroy!
   end
 
-  def unfollow!(user)
-    relation = following_relationships.find_by!(following_id: user.id)
-    relation.destroy!
-  end
+  # def unfollow!(user)
+  #   relation = following_relationships.find_by!(following_id: user.id)
+  #   relation.destroy!
+  # end
 
   def has_followed?(user)
     following_relationships.exists?(following_id: user.id)

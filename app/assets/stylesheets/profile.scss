@@ -19,7 +19,7 @@ $image_size: 76.88px;
 .profile_image_container {
   text-align: center;
   img {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     box-sizing: border-box;
     width: $image_size;
     height: $image_size;
@@ -43,7 +43,7 @@ $image_size: 76.88px;
     display: flex;
 
     li {
-      display: inline-block;
+      // display: inline-block;
       margin: auto;
       p {
         font-size: 16px;
