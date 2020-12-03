@@ -15,15 +15,12 @@
       = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
       = f.submit '保存', class: 'btn-secondary', style: "display:none;", id: 'file-btn'
 
-.follow#account-show{data: {account_id: @user.id}}
-  - if current_user&.has_followed?(user)
-    .follow_btn.follow.hidden
-      -# = link_to 'Unfollow', account_unfollows_path(user), data: {method: 'post'}
-      Follow
-  - else
-    .follow_btn.unfollow.hidden
-      -# = link_to 'Follow', account_follows_path(user), data: {method: 'post'}
-      Unfollow
+.follow#account-show{data: {account_id: @user.id, id: current_user.id}}
+  -# - if current_user&.has_followed?(user)
+  .follow_btn.follow.hidden
+    Follow
+  .follow_btn.unfollow.hidden
+    Unfollow
 
 
 .count_container
