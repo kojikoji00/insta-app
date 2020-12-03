@@ -16,13 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     $('.follow').on('click', function(){
-      axios.post(`/accounts/${accountId}/follow`)
+      axios.post(`/accounts/${accountId}/follows`)
         .then((response) => {
           if(response.data.status === 'ok'){
             $('.unfollow').removeClass('hidden')
             $('.follow').addClass('hidden')
-            // $(".count_followers").html('<%= link_to  account_follows_path %>')
-            $(".count_followers").html(`${response.data.followCount}`)
+            $('.count_followers').html(`${response.data.followCount}`)
           }
         })
         .catch((e) => {
@@ -32,13 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
     $('.unfollow').on('click', function(){
-      debugger
-      axios.post(`/accounts/${accountId}/unfollow`)
+      axios.post(`/accounts/${accountId}/unfollows`)
         .then((response) => {
           if(response.data.status === 'ok'){
             $('.follow').removeClass('hidden')
             $('.unfollow').addClass('hidden')
-            $(".count_followers").html(`${response.data.followCount}`)
+            $('.count_followers').html(`${response.data.followCount}`)
           }
         })
       .catch((e) => {

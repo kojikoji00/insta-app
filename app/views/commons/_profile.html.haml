@@ -1,8 +1,10 @@
 .header_logout
   %p.notice= notice
   %p.alert= alert
-  - if user_signed_in?
-    = link_to 'ログアウト', destroy_user_session_path, data: {method: 'delete' }
+
+-# ログアウト
+  -# - if user_signed_in?
+  -#   = link_to 'ログアウト', destroy_user_session_path, data: {method: 'delete' }
 
 .profile
   .profile_name
@@ -14,26 +16,31 @@
       = image_tag user.avatar_image, class: 'profile_avatar', id: 'profile_avatar_prev'
       = f.file_field :avatar, class: "image", style: "display:none;", id: "file"
       = f.submit '保存', class: 'btn-secondary', style: "display:none;", id: 'file-btn'
+  - else
+    = image_tag user.avatar_image
 
-.follow#account-show{data: {account_id: @user.id, id: current_user.id}}
-  -# - if current_user&.has_followed?(user)
-  .follow_btn.follow.hidden
-    Follow
-  .follow_btn.unfollow.hidden
-    Unfollow
+.follow_container
+  .follow_btn#account-show{data: {account_id: @user.id, id: current_user.id}}
+    -# - if current_user&.has_followed?(user)
+    .follow_btn.follow.hidden
+      Follow
+    .follow_btn.unfollow.hidden
+      Unfollow
 
 
 .count_container
   %ul
-    %li.count_posts
-      = user.articles.to_a.count
+    %li
+      .count_posts
+        = user.articles.to_a.count
       %p Posts
-    -# %span= user.article_count
-    %li.count_followers
-      = user.followers.to_a.count
+    %li
+      .count_followers
+        = user.followers.count
       %p Followers
-    %li.count_following
-      = user.followings.to_a.count
+    %li
+      .count_following
+        = user.followings.count
       %p Following
 
 = javascript_pack_tag 'follow'
