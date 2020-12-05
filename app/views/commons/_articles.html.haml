@@ -1,11 +1,13 @@
 .container
   .article_new
     = link_to new_article_path do
-      .float_btn
+      .article_new_float_btn
         = image_tag 'camera.png'
+    .article_new_title
+      New Article
+
+  .article-container
     - articles.each do |article|
-      -# .article-show{id: "article-show#{article.id}"}
-      -# .article-show{data: {article_id: article.id}}
       .article-show{id: "#{article.id}"}
         = link_to article_path(article) do
           = render 'commons/article', article: article

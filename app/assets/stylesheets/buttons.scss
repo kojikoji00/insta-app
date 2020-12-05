@@ -10,18 +10,37 @@
   font-weight: bold;
 }
 
-.float_btn {
-  margin-left: 16px;
-  margin-top: 12px;
-  margin-bottom: 20px;
-  img {
-    width: 20px;
-    height: 20px;
+.article_new{
+  &_float_btn {
+    margin-left: 20px;
+    margin-top: 12px;
+    img {
+      width: 40px;
+      height: 40px;
+      float: left;
+      margin-bottom: 40px;
+      margin-right: 12px;
+    }
+  }
+  &_title{
+    font-size: 12px;
+    border: none;
   }
 }
 
 .btn-secondary {
-  
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-secondary:hover {
+  background: #67c5ff;
+  color: white;
 }
 
 

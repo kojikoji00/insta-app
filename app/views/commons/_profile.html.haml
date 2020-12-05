@@ -20,12 +20,13 @@
     = image_tag user.avatar_image
 
 .follow_container
-  .follow_btn#account-show{data: {account_id: @user.id, id: current_user.id}}
-    -# - if current_user&.has_followed?(user)
-    .follow_btn.follow.hidden
-      Follow
-    .follow_btn.unfollow.hidden
-      Unfollow
+  -if user == @user
+    .follow_btn#account-show{data: {account_id: user.id, id: current_user.id}}
+      -# - if current_user&.has_followed?(user)
+      .follow_btn.follow.hidden
+        Follow
+      .follow_btn.unfollow.hidden
+        Unfollow
 
 
 .count_container
@@ -33,15 +34,18 @@
     %li
       .count_posts
         = user.articles.to_a.count
-      %p Posts
+      .count_posts_all
+        Posts
     %li
       .count_followers
         = user.followers.count
-      %p Followers
+      .count_followers_all
+        = link_to 'Followers', account_followers_path(user)
     %li
       .count_following
         = user.followings.count
-      %p Following
+      .count_following_all
+        = link_to 'Followings', account_followings_path(user)
 
 = javascript_pack_tag 'follow'
 -# .grid

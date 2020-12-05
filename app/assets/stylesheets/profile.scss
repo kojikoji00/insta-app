@@ -6,11 +6,12 @@ $image_size: 76.88px;
   margin-top: 24px;
   &_name {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 15px;
     margin-top: 42px;
     font-family: Poppins;
     font-style: normal;
-    font-size: 16px;
+    font-weight: bold;
+    font-size: 20px;;
   }
   &_image {
     text-align: center;
@@ -45,29 +46,38 @@ $image_size: 76.88px;
     li {
       // display: inline-block;
       margin: auto;
-      p {
-        font-size: 16px;
-        font-weight: bold;
-      }
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
       // margin-left: 100px;
     }
   }
 }
-//   .count_followers {
-//     float: left;
-//     width: 30%;
-//   }
 
-//   .count_following {
-//     overflow:hidden;
-//     width: 30%;
-//     // float: right;
-//     // margin-right: 100px;
-//   }
-// }
-// .article_container {
-//   margin-top: 20px;
-// }
+.follow_user_image {
+  clear: both;
+  float: left;
+  margin-top: 8px;
+
+  img{
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.follow_user_name{
+  margin-top: 45px;
+  margin-left: 20px;
+  float: left;
+}
+
+.follow_title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
 
 .grid {
   display: grid;

@@ -45,27 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 })
-  // axios.get(`/articles/${articleId}/comments`)
-  //   .then((response) => {
-    //     const comments = response.data
-    //   })
-    
-    // $('.profile_avatar').on('click', function() {
-  //   $('#file').trigger('click');
-  // });
-  // $('#file').on('change', function(e){
-    //   $('#file-btn').trigger('click')
-  //   // debugger
-  // })
-
-  // var files = e.target.files[0];
-  // var reader = new FileReader();
-  // reader.onload = function (e) {
-  //   debugger
-  // }
-  //   reader.readAsDataURL(e.target.files[0]);
-
-
 
 // 記事を投稿した時間を表示
-moment(article.created_at).fromNow()
+// moment(article.created_at).fromNow()
