@@ -41,6 +41,10 @@ class User < ApplicationRecord
     @user&.name || self.email.split('@').first
   end
   
+  # def avatar_image
+  #   profile.avatar
+  # end
+
   def avatar_image
     if profile&.avatar&.attached?
       profile.avatar

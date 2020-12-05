@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   resources :accounts, only: [:show] do
     resources :follows, only: [:show, :create]
     resources :unfollows, only: [:create]
+    resources :followers, only: [:index]
+    resources :followings, only: [:index]
   end
   # scope module: :apps do
   resource :timeline, only: [:show]
-    # resources :favorites, only: [:index]#  いいね
-  # end
 end

@@ -7,10 +7,27 @@
         -#   = @article.title
         -# .card_article_content
         -#   = @article.content
-  .card_article_edit
-    = link_to 'edit', edit_article_path(@article)
-  .card_article_delete
-    = link_to 'delete', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
+  .card_article_reaction
+    - if user_signed_in? && current_user.has_liked?(@article)
+      .card_article_reaction_heart{ id: @article.id, class: 'active-heart' }
+        = image_tag 'heart-active.svg'
+      .card_article_reaction_heart.hidden{ id: @article.id, class: 'inactive-heart' }
+        = image_tag 'heart.svg'
+    - else
+      .card_article_reaction_heart.hidden{ id: @article.id, class: 'active-heart' }
+        = image_tag 'heart-active.svg'
+      .card_article_reaction_heart{ id: @article.id, class: 'inactive-heart' }
+        = image_tag 'heart.svg'
+
+    .card_article_reaction_share
+      = link_to "https://twitter.com/share?url=#{request.url}&text=insta" do
+        = image_tag 'share.png'
+
+  - if @article.user === current_user
+    .card_article_edit
+      = link_to 'edit', edit_article_path(@article)
+    .card_article_delete
+      = link_to 'delete', article_path(@article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか' }
 
   .comments
     %h2 Comment

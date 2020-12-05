@@ -35,6 +35,7 @@ gem 'sidekiq'
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'rack', '~> 2.0.8'
+gem 'social-share-button'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

@@ -1,7 +1,6 @@
 import $ from 'jquery'
 import axios from 'modules/axios'
 
-
 const handleHeartDisplay = (hasLiked) => {
   if (hasLiked) {
     $('.active-heart').removeClass('hidden')
@@ -21,17 +20,16 @@ const appendNewComment = (comment) => {
 
 // document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
-  // const dataset = $('.article-show[id]')
   const dataset = $('#article-show').data()
   const articleId = dataset.articleId
-  
+
   axios.get(`/articles/${articleId}/comments`)
-  .then((response) => {
-    const comments = response.data
-    comments.forEach((comment) => {
-      appendNewComment(comment)
+    .then((response) => {
+      const comments = response.data
+      comments.forEach((comment) => {
+        appendNewComment(comment)
+      })
     })
-  })
   
   $('.add-comment-button').on('click', () => {
     const content = $('#comment_content').val()
@@ -41,15 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
       axios.post(`/articles/${articleId}/comments`, {
         comment: {content: content}
       })
-        .then((res) => {
-          const comment = res.data
-          appendNewComment(comment)
-          $('#comment_content').val('')
-        })
+      .then((res) => {
+        const comment = res.data
+        appendNewComment(comment)
+        $('#comment_content').val('')
+      })
     }
   })
-
-
+  
   axios.get(`/articles/${articleId}/like`)
   .then((response) => {
     const hasLiked = response.data.hasLiked
@@ -57,32 +54,32 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   $('.inactive-heart').on('click', function(){
-    const articleId = $(this).attr('id')
-    axios.post(`/articles/${articleId}/like`)
-    .then((response) => {
-      if (response.data.status === 'ok') {
-        $(`#${articleId}.active-heart`).removeClass('hidden')
-        $(`#${articleId}.inactive-heart`).addClass('hidden')
-      }
-    })
-      .catch((e) => {
-        window.alert('Error')
-        console.log(e)
+    const likeId = $(this).attr('id')
+    axios.post(`/articles/${likeId}/like`)
+      .then((response) => {
+        if (response.data.status === 'ok') {
+          $(`#${likeId}.active-heart`).removeClass('hidden')
+          $(`#${likeId}.inactive-heart`).addClass('hidden')
+        }
       })
+      // .catch((e) => {
+      //   window.alert('Error')
+      //   console.log(e)
+      // })
   })
   
   $('.active-heart').on('click', function(){
-    const articleId = $(this).attr('id')
-    axios.delete(`/articles/${articleId}/like`)
-    .then((response) => {
-      if (response.data.status === 'ok') {
-        $(`#${articleId}.active-heart`).addClass('hidden')
-        $(`#${articleId}.inactive-heart`).removeClass('hidden')
-      }
-    })
-    .catch((e) => {
-      window.alert('Error')
-      console.log(e)
-    })
+    const likeId = $(this).attr('id')
+    axios.delete(`/articles/${likeId}/like`)
+      .then((response) => {
+        if (response.data.status === 'ok') {
+          $(`#${likeId}.active-heart`).addClass('hidden')
+          $(`#${likeId}.inactive-heart`).removeClass('hidden')
+        }
+      })
+      // .catch((e) => {
+      //   window.alert('Error')
+      //   console.log(e)
+      // })
   })
 })

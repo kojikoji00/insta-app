@@ -35,19 +35,27 @@ html {
 // }
 
 .header {
-
-  &_back {
-    float:left;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
   &_logout {
     float: right;
+  }
+
+  &_top{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 40px;
+    text-decoration: none;
   }
 }
 
 .header_body {
   clear: both;
+}
+
+.footer_back {
+  clear: both;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 
 .hidden {

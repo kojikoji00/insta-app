@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def show
     article = Article.find(params[:article_id])
     like_status = current_user.has_liked?(article)
-    
+
     render json: {hasLiked: like_status}
   end
   
@@ -13,7 +13,6 @@ class LikesController < ApplicationController
     article.likes.create!(user_id: current_user.id)
 
     render json: {status: 'ok'}
-    # redirect_to article_path(article)
   end
 
   def destroy

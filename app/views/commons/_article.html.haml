@@ -1,5 +1,4 @@
 .card
-  -# #article-show{data:{article_id: article.id}}
   .card_article
     .card_article_account
       = link_to account_path(article.user) do
@@ -7,8 +6,8 @@
           = image_tag article.user.avatar_image
         .card_article_profile_name
           = article.user.display_name
-      -# .card_article_post_date
-      -#   %span{"data-livestamp" => "#{article.created_at}"}
+    -# .card_article_post_date
+    -#   %span{"data-livestamp" => "#{article.created_at}"}
 
     .card_article_photo
       - if article.photos.attached?
@@ -21,22 +20,25 @@
         -#   = image_tag article.photos[1]
         -# .card_article_photo_under2
         -#   = image_tag article.photos[2]
-    .card_article_reaction
-      - if user_signed_in?
-        - if current_user.has_liked?(article)
-          .card_article_reaction_heart.hidden{ id: article.id, class: 'active-heart' }
-            = image_tag 'heart-active.svg'
-          .card_article_reaction_heart.hidden{ id: article.id, class: 'inactive-heart' }
-            = image_tag 'heart.svg'
 
-        .card_article_reaction_comment
-          = link_to article_path(article) do
-            -# = image_tag 'comment.png'
-      .card_article_reaction_share
-        %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw"}
- 
+    .card_article_reaction
+      - if user_signed_in? && current_user.has_liked?(article)
+        .card_article_reaction_heart
+          -# = image_tag 'heart-active.svg'
+          Already like it!
+      - else
+        .card_article_reaction_heart
+          I haven't liked it yet
+          -# = image_tag 'heart.svg'
+
+        -# .card_article_reaction_comment
+        -#   = link_to article_path(article) do
+        -#     = image_tag 'comment.png'
+
     -# .card_article_heart_count
     -#   = "#{article.liked_users.name} and #{article.liked_users.to_a.count - 1} other liked your post"
     -# .card_article_content
     -#   = "#{article.user.display_name}#{"  "}#{article.content}"
+
+= javascript_pack_tag 'article'
 

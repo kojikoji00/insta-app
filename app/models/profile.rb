@@ -15,4 +15,10 @@ class Profile < ApplicationRecord
   belongs_to :user
   has_one_attached :avatar
   # validates :name, uniqueness: true
+
+  # def default_avatar
+  #   if !self.avatar.attached?
+  #     self.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-avatar.png')), filename: 'default-avatar.png', content_type: 'image/png')
+  #   end
+  # end
 end

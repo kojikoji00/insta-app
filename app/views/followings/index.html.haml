@@ -1,0 +1,10 @@
+.follower_container
+  .follow_title
+    Following
+
+.follow_container
+  - @user.followings.each do |following|
+    .follow_user_image
+      = image_tag following.avatar_image
+    .follow_user_name
+      = following.display_name
