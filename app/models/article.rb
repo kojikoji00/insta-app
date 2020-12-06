@@ -19,4 +19,8 @@ class Article < ApplicationRecord
   has_many_attached :photos
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+
+  validates :content, presence: true
+  validates :content, length: { minimum: 2, maximum: 100 }
+  validates :content, format: { with: /\A(?!\@)/ }
 end

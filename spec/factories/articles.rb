@@ -14,5 +14,9 @@
 #
 FactoryBot.define do
   factory :article do
+    content { Faker::Lorem.characters(number: 100) }
+    after(:build) do |article|
+      article.photos.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'images', 'article1.png')), filename: 'article1.png', content_type: 'image/png')
+    end
   end
 end
